@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: #ffff88;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        ul li:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            background-color: #ffff88;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        ul li a:hover {
+            background-color: #ffeb3b;
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        .actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            ul li {
+                width: calc(33.33% - 20px);
+                margin: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>포스트잇 목록</h1>
+
+    <ul>
+        {% for post in post_its %}
+            <li>
+                <a href="/post-its/{{ post.id }}">{{ post.content }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="actions">
+        {% if user_id is not none %}
+            <a href="/logout">로그아웃</a>
+            <a href="/post-it">포스트잇 등록</a>
+        {% else %}
+            <a href="/login">로그인</a>
+            <a href="/signup">회원가입</a>
+        {% endif %}
+    </div>
+</body>
+</html>
