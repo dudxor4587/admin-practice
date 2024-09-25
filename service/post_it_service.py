@@ -13,7 +13,7 @@ def create_post_it(db: Session, post_its: post_it_schemas.PostItCreate, author_i
 
 
 def get_post_it(db: Session, post_it_id: int):
-    return db.query(post_it.PostIt).filter(post_it.PostIt.id == post_it_id).first()
+    return db.query(post_it.PostIt).filter(post_it.PostIt.post_it_id == post_it_id).first()
 
 
 def get_post_its(db: Session):

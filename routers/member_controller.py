@@ -44,7 +44,7 @@ def login(request: Request,
     user = member_service.authenticate_member(db, name=member.name, password=member.password)
     if not user:
         return templates.TemplateResponse("login.html", {"request": request, "error": "아이디 또는 비밀번호가 일치하지 않습니다."})
-    session_id = session.create_session(user.id)
+    session_id = session.create_session(user.member_id)
     redirect_url = "/"
     response = RedirectResponse(url=redirect_url, status_code=status.HTTP_302_FOUND)
     response.set_cookie(key="session_id", value=session_id)

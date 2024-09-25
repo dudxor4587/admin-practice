@@ -25,4 +25,4 @@ def authenticate_member(db: Session, name: str, password: str):
 
 
 def get_member_by_id(db: Session, user_id: int):
-    return db.query(member.Member).filter(member.Member.id == user_id).first()
+    return db.query(member.Member).filter(member.Member.member_id == user_id).first()
