@@ -5,3 +5,7 @@ pydantic
 passlib[bcrypt]
 python-jose
 fastapi.security
+pymysql
+cryptography
+jinja2
+python-multipart

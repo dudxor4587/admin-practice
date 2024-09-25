@@ -38,15 +38,12 @@ def signup(request: Request):
 
 
 @router.post("/login")
-def login(response: Response,
+def login(request: Request,
           member: member_schemas.MemberLogin = Depends(member_schemas.create_member_login_form),
           db: Session = Depends(get_db)):
     user = member_service.authenticate_member(db, name=member.name, password=member.password)
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-        )
+        return templates.TemplateResponse("login.html", {"request": request, "error": "아이디 또는 비밀번호가 일치하지 않습니다."})
     session_id = session.create_session(user.id)
     redirect_url = "/"
     response = RedirectResponse(url=redirect_url, status_code=status.HTTP_302_FOUND)

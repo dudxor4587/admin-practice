@@ -65,6 +65,9 @@
 </head>
 <body>
     <h1>로그인</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
     <form action="/login" method="post">
         <input type="text" name="name" placeholder="사용자 이름" required>
         <input type="password" name="password" placeholder="비밀번호" required>
